@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text
+        {
+            text-align: center;
+            font-size: 30px;
+            color:yellow;
+        }
+        @media(min-width: 1000px)
+        {
+            .text
+            {
+                font-size: 50px;
+            }
+        }
+        @media (min-width:700px) and (max-width:999px)
+        {
+            .text
+            {
+                font-size: 40px;
+            }
+        }
+        @media(max-width:699px)
+        {
+            .text
+            {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text"> Future MERN Stack Developer</h1>
+</body>
+</html>
