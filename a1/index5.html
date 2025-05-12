@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-6</title>
+</head>
+<body>
+    <h1>Login Form</h1>
+    <label for="email">Enter your E-mail:</label><br>
+    <input type="text" placeholder="enter email" id="email"><br>
+    <label for="pswd">Enter the password:</label><br>
+    <input type="text" placeholder="password" id="pswd"><br>
+    <button onclick="display()" id="submit">Submit</button><br>
+    <hr>
+    <div id="print"></div>
+</body>
+<script>
+    function display()
+{
+    var mail=document.getElementById('email').value;
+    var paswd=document.getElementById('pswd').value;
+    document.getElementById('print').innerHTML="E-Mail is "+mail+"<br> Password is :"+paswd;
+}
+     
+</script>
+</html>
