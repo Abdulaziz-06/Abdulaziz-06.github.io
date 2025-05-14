@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodMart</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background-color: floralwhite;
+    }
+    .topbar {
+      background-color: navy;
+      color: white;
+      padding: 10px 20px;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+    .header {
+      background-color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: goldenrod;
+    }
+    .searchbar {
+      flex: 1;
+      margin: 0 20px;
+    }
+    .searchbar input {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+    .support, .cart {
+      font-size: 14px;
+      color: black;
+    }
+    .menu {
+      background-color: whitesmoke;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .menu a {
+      text-decoration: none;
+      color: black;
+    }
+    .main {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+    .left {
+      background-color: lightblue;
+      padding: 20px;
+      flex: 2;
+      border-radius: 10px;
+    }
+    .left h2 {
+      color: black;
+    }
+    .left p {
+      color: dimgray;
+    }
+    .left button {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+    .box {
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .green-box {
+      background-color: lightgreen;
+    }
+    .pink-box {
+      background-color: lightpink;
+    }
+    .box h3 {
+      color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>Praveen Teachings</div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
+    <a href="#">Students</a>
+    <a href="#">Logout</a>
+  </div>
+</div>
+
+<div class="header">
+  <div class="logo">FOODMART</div>
+  <div class="searchbar">
+    <input type="text" placeholder="Search for more than 20000 products">
+  </div>
+  <div class="support">
+    For Support? <br> +980-34984089
+  </div>
+  <div class="cart">
+    Your Cart <br> $1290.00
+  </div>
+</div>
+
+<div class="menu">
+  <a href="#">Shop By Departments</a>
+  <a href="#">Women</a>
+  <a href="#">Men</a>
+  <a href="#">Kids</a>
+  <a href="#">Accessories</a>
+  <a href="#">Pages</a>
+  <a href="#">Brand</a>
+  <a href="#">Sale</a>
+  <a href="#">Blog</a>
+</div>
+
+<div class="main">
+  <div class="left">
+    <h3 style="color: goldenrod;">100% Natural</h3>
+    <h2>Fresh Smoothie & Summer Juice 🥤</h2>
+    <p>Dive into a world of 100% organic, fresh, and healthy summer beverages.</p>
+    <button>Shop Now</button>
+  </div>
+  <div class="right">
+    <div class="box green-box">
+      <h3>20% OFF</h3>
+      <p>SALE</p>
+      <p>Fruits & Vegetables</p>
+      <p>Shop Collection →</p>
+    </div>
+    <div class="box pink-box">
+      <h3>15% OFF</h3>
+      <p>SALE</p>
+      <p>Baked Products</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
