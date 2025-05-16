@@ -7,5 +7,5 @@ const prod = [
 const element = prod.map((element) => {
     element.price += 5;
     console.log(element.name + " " + element.price);
-    return element; 
+    
 });
