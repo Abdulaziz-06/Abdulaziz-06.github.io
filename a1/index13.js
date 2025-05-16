@@ -5,6 +5,6 @@ const prod = [
 ];
 
 const newprod = prod.map(element=>({name:element.name,price:element.price+5}));
-newprod.forEach(el1=>{
+    newprod.forEach(el1=>{
     console.log(el1.name+" "+el1.price);
 })
