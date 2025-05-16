@@ -4,8 +4,7 @@ const prod = [
     { id: 3, name: "prod3", price: 3000 }
 ];
 
-const element = prod.map((element) => {
-    element.price += 5;
-    console.log(element.name + " " + element.price);
-    
-});
+const newprod = prod.map(element=>({name:element.name,price:element.price+5}));
+newprod.forEach(el1=>{
+    console.log(el1.name+" "+el1.price);
+})
