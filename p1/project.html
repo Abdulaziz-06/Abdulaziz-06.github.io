@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="project.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Food-Mart By Abdul Aziz</title>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logoo">
+      <img src="images/logo.png" alt="Logo" />
+    </div>
+
+    <div class="search-wrapper">
+      <select class="categories">
+        <option value="">All Categories</option>
+        <option value="fruits">Fruits</option>
+        <option value="vegetables">Vegetables</option>
+        <option value="beverages">Beverages</option>
+      </select>
+
+      <div class="search-input">
+        <input type="text" placeholder="Search for more than 20000 products" />
+        <i class="fa fa-search search-icon"></i>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="support">
+        For Support?<br />
+        <small>+980-34984089</small>
+      </div>
+
+      <div class="right-icons">
+        <div class="icon"><i class="fa-regular fa-heart"></i></div>
+        <div class="icon"><i class="fa-regular fa-user"></i></div>
+        <div class="cart-dropdown">
+          <div id="cartbtn" class="cart-toggle">
+            Your Cart <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="cart-amount">
+            <strong>$1290.00</strong>
+          </div>
+          <div id="cartContent" class="hidden">
+            <p>Your cart is currently empty.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-container">
+    <div class="menu">
+      <div class="dropdown">
+        <a href="#" class="departments-toggle">
+          Shop By Departments <i class="fa-solid fa-chevron-down"></i>
+        </a>
+      </div>
+      <div class="menu-links">
+        <a href="#">Women</a>
+        <a href="#">Men</a>
+        <a href="#">Kids</a>
+        <a href="#">Accessories</a>
+        <a href="#">Pages <i class="fa-solid fa-chevron-down"></i></a>
+        <a href="#">Brand</a>
+        <a href="#">Sale</a>
+        <a href="#">Blog</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="ads">
+    <div class="left-ad">
+      <h4>100 % Natural</h4>
+      <h1>
+        Fresh Smoothie<br />
+        & Summer Juice 🍹
+      </h1>
+      <p>Dive into a world of 100% organic, fresh, and healthy summer beverages.</p>
+      <button>Shop Now</button>
+      <img src="images/product-thumb-1.png" alt="Smoothie Image" />
+      <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <div class="right-ads">
+      <div class="ad-box green">
+        <h2>20% OFF</h2>
+        <p class="sale">------SALE</p>
+        <h3>Fruits & <br />Vegetables</h3>
+        <a href="#">Shop Collection →</a>
+        <img src="images/ad-image-1.png" alt="Fruits" />
+      </div>
+      <div class="ad-box peach">
+        <h2>15% OFF</h2>
+        <p class="sale">------SALE</p>
+        <h3>Baked Products</h3>
+        <a href="#">Shop Collection →</a>
+        <img src="images/ad-image-2.png" alt="Bakery" />
+      </div>
+    </div>
+  </section>
+
+  <script src="project.js"></script>
+</body>
+</html>

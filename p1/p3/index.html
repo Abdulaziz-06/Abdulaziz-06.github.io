@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - 3</title>
+    <style>
+        h1
+        {
+            text-align: center;
+            margin-bottom: 30px;
+            color:#2c3e50
+        }
+        .container {
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .left, .right {
+            padding: 20px;
+            flex: 1;
+        }
+        .left {
+            background-color: white;
+            border-right: 1px solid #e0e0e0;
+        }
+        .right {
+            background-color: #f8f9fa;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #customer-name {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bank ATM</h1>
+    <div class="container">
+        <div class="left" id="login">
+            <h2>Account Login</h2>
+            <div class="form-group">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" placeholder="Enter your card number">
+            </div>
+            <div class="form-group">
+                <label for="pin">PIN:</label>
+                <input type="password" id="pin" placeholder="Enter your PIN">
+            </div>
+            <button id="loginBtn">Login</button>
+        </div>
+        <div class="right">
+            <h2>Welcome, <span id="customer-name">Abdul Aziz</span></h2>
+        </div>
+    </div>
+
+
+    <script>
+        const customers = [
+        { cart: "1234567890", pin: "1234", name: "John", balance: 0 },
+        { cart: "1234567891", pin: "2345", name: "Cathy", balance: 0 },
+];
+    </script>
+</body>
+</html>
