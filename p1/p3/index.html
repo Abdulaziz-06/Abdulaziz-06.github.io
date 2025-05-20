@@ -1,100 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project - 3</title>
-    <style>
-        h1
-        {
-            text-align: center;
-            margin-bottom: 30px;
-            color:#2c3e50
-        }
-        .container {
-            display: flex;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        .left, .right {
-            padding: 20px;
-            flex: 1;
-        }
-        .left {
-            background-color: white;
-            border-right: 1px solid #e0e0e0;
-        }
-        .right {
-            background-color: #f8f9fa;
-        }
-        h2 {
-            color: #3498db;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        #customer-name {
-            color: #2c3e50;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATM Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, black, #6dd4fa12);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: rgba(255, 255, 255, 0.071);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      color: #010608aa;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #2d202084;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color:#2d202084 ;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h1>Bank ATM</h1>
-    <div class="container">
-        <div class="left" id="login">
-            <h2>Account Login</h2>
-            <div class="form-group">
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" id="cardNumber" placeholder="Enter your card number">
-            </div>
-            <div class="form-group">
-                <label for="pin">PIN:</label>
-                <input type="password" id="pin" placeholder="Enter your PIN">
-            </div>
-            <button id="loginBtn">Login</button>
-        </div>
-        <div class="right">
-            <h2>Welcome, <span id="customer-name">Abdul Aziz</span></h2>
-        </div>
+  <div class="login-box">
+    <h2>ATM Login</h2>
+    <div class="form-group">
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" placeholder="Enter your card number">
     </div>
+    <div class="form-group">
+      <label for="pin">PIN</label>
+      <input type="password" id="pin" placeholder="Enter your PIN">
+    </div>
+    <button id="loginBtn">Login</button>
+    <div id="error-msg" class="error"></div>
+  </div>
 
+  <script>
+    const customers = [
+      { cart: "1234567890", pin: "1234", name: "John" },
+      { cart: "1234567891", pin: "2345", name: "Cathy" },
+    ];
 
-    <script>
-        const customers = [
-        { cart: "1234567890", pin: "1234", name: "John", balance: 0 },
-        { cart: "1234567891", pin: "2345", name: "Cathy", balance: 0 },
-];
-    </script>
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const card = document.getElementById('cardNumber').value.trim();
+      const pin = document.getElementById('pin').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+
+      if (!card || !pin) {
+        errorMsg.textContent = "All fields are required.";
+        return;
+      }
+
+      if (!/^\d{4}$/.test(pin)) {
+        errorMsg.textContent = "PIN must be exactly 4 digits.";
+        return;
+      }
+
+      const customer = customers.find(c => c.cart === card && c.pin === pin);
+      if (customer) {
+        localStorage.setItem("customerName", customer.name);
+        window.location.href = "index2.html";
+      } else {
+        errorMsg.textContent = "Invalid card number or PIN.";
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,148 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abdul Aziz - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
     }
 
-    html {
-      scroll-behavior: smooth;
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #1a1a1a;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .nav {
+    nav h1 {
+      color: #FF6F61;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: #FFFFFF;
       margin-left: 20px;
       text-decoration: none;
-      color: white;
+      font-weight: 500;
     }
 
-    .dropdown {
-      display: inline-block;
-      position: relative;
+    nav a:hover {
+      color: #FF6F61;
     }
 
-       
-
-    .projectbox {
-      background-color: white;
-      color: black;
-      padding: 20px;
-      width: 30%;
-      border-radius: 15px;
-      transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
-    }
-
-    .projectbox button {
-      padding: 8px 16px;
-      background-color: black;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      transition: background-color 0.4s ease, color 0.4s ease, border 0.4s ease;
-    }
-
-    .projectbox:hover {
-      background-color: black;
-      color: white;
-      transform: scale(1.03);
-    }
-
-    .projectbox:hover button {
-      background-color: white;
-      color: black;
-      border: 1px solid white;
-    }
-
-    .footer {
-      background-color: #e8e8e8;
-      padding: 30px;
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .hero a {
+      padding: 12px 24px;
+      background-color: #FF6F61;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .projects {
+      padding: 80px 20px;
+      background-color: #121212;
+    }
+
+    .projects h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      font-size: 36px;
+      color: #00BFA6;
+    }
+
+    .project-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .project {
+      background-color: #1E1E1E;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .project h3 {
+      margin-bottom: 10px;
+      color: #FF6F61;
+    }
+
+    .project p {
+      margin-bottom: 20px;
+    }
+
+    .project a {
+      display: inline-block;
+      background-color: #1a1a1a;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .project a:hover {
+      background-color: #333333;
+      color: #FF6F61;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #0A0A0A;
+      color: #666666;
       font-size: 14px;
-      color: #555;
-      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 36px;
+      }
+      .projects h2 {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-  <div style="background-color: blue; padding: 20px;">
-    <h1 style="display: inline; color: orange; margin: 0;">Abdul Aziz</h1>
-    <span style="float: right;">
-      <a href="#" class="nav" onclick="showHomeAlert()">Home</a>
-      <a href="#projects" class="nav">Projects</a>
-      <div class="dropdown">
-        <a href="index3.html" class="nav">Services</a>
-      </div>
-      <a href="index1.html" class="nav">About</a>
-      <a href="index2.html" class="nav">Contact</a>
-    </span>
-  </div>
-
-  <div style="display: flex; padding: 40px; align-items: center;">
-    <div style="width: 50%;">
-      <h2>MERN Stack Developer</h2>
-      <p>
-        I am Abdul, Feel free to review my Portfolio.<br>
-        I am a MERN Stack Developer.<br>
-        I am learning MERN stack now.<br>
-        I am from Geethanjali College of Engineering and Technology.<br>
-        I am from CSE stream.
-      </p>
-       <p>
-        I am passionate about solving problems with code and enjoy collaborating with teams to bring innovative ideas to life. My aim is to continuously learn and grow as a developer while contributing to impactful projects.
-      </p>
-      
-      <a href="index1.html" style="padding: 10px 20px; background-color: orange; color: white; border: none; border-radius: 10px; text-decoration: none;">Know more</a>
-      <p style="color: blue;">Click on know more for info</p>
+  <nav>
+    <h1>Abdul Aziz</h1>
+    <div>
+      <a href="#">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="index3.html">Services</a>
+      <a href="index1.html">About</a>
+      <a href="index2.html">Contact</a>
     </div>
-    <div style="width: 50%; text-align: center;">
-      <img src="img2.avif" alt="tree img" style="width: 80%; border-radius: 30px;">
-    </div>
-  </div>
+  </nav>
 
-  <div id="projects" style="background-color: #d5cde4; padding: 40px 70px 30px;">
-    <h2 style="text-align: center;">Projects</h2>
-    <div style="display: flex; justify-content: space-between; gap: 20px; margin-top: 25px;">
-      <div class="projectbox">
+  <section class="hero">
+    <h2>MERN Stack Developer</h2>
+    <p>I am Abdul, a passionate MERN Stack Developer from Geethanjali College of Engineering and Technology, CSE stream. I enjoy solving problems with code and collaborating on innovative projects.</p>
+    <a href="index1.html">Know More</a>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <div class="project">
         <h3>Project 1</h3>
         <p>Food Mart</p>
-       <a href="project.html">
-  <button>View Demo</button>
-</a>
-
+        <a href="project.html">View Demo</a>
       </div>
-      <div class="projectbox" style="padding: 15px;">
+      <div class="project">
         <h3>Project 2</h3>
         <p>My Store</p>
-      <a href="p2/index.html">
-  <button>View Demo</button>
-</a>
-
-
+        <a href="p2/index.html">View Demo</a>
       </div>
-      <div class="projectbox">
+      <div class="project">
         <h3>Project 3</h3>
-        <p>project3</p>
-       <a href="p3/index.html">
-  <button>View Demo</button>
-</a>
+        <p>ATM</p>
+        <a href="p3/index.html">View Demo</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="footer">
+  <footer>
     &copy; 2025 Abdul Aziz. All rights reserved.
-  </div>
-
-  <script>
-    function showHomeAlert() {
-      alert("This is home");
-    }
-  </script>
+  </footer>
 
 </body>
 </html>

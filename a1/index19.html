@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Document</title>
+</head>
+<body>
+<div id="namelist"></div>
+<h3>Email</h3>
+<input type="email" id="email" placeholder="Enter Email ID" />
+<button onclick="submit()">Submit</button>
+<p id="matchname"></p>
+<p id="postco"></p>
+<script>
+  let allusers=[];
+  async function fetchusers() {
+    const res=await fetch('https://jsonplaceholder.typicode.com/users');
+    const data=await res.json();
+    allusers=data;
+  }
+  async function submit() {
+    const emailInput=document.getElementById('email').value.trim().toLowerCase();
+    const user=allusers.find(u=>u.email.toLowerCase()===emailInput);
+
+    if(user)
+    {
+      document.getElementById('matchname').textContent="Matched Name:"+user.name;
+      const resPosts=await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
+      const posts=await resPosts.json();
+      document.getElementById('postco').textContent=`user ${user.id} has total ${posts.length} posts.`;
+    } 
+    else 
+    {
+      document.getElementById('matchname').textContent = "No matching";
+      document.getElementById('postco').textContent="";
+    }
+  }
+
+  fetchusers();
+</script>
+
+</body>
+</html>
