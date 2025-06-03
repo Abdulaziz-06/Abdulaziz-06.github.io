@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abdul Aziz | MERN Stack Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #3498db;
-      --secondary-color: #2c3e50;
-      --background: #f4f6f8;
-      --card-bg: #ffffff;
-      --text-color: #333;
-      --border-radius: 10px;
+      --bg: #0f1117;
+      --card: #1a1c23;
+      --text: #d1d5db;
+      --accent: #7f5af0;
+      --hover: #2c2f3a;
+      --radius: 8px;
     }
 
     * {
@@ -22,98 +22,75 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--background);
-      color: var(--text-color);
+      font-family: 'Fira Code', monospace;
+      background-color: var(--bg);
+      color: var(--text);
       padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
     h1 {
-      font-size: 3rem;
-      color: var(--secondary-color);
+      font-size: 2.5rem;
+      color: var(--accent);
     }
 
     h2 {
-      font-size: 1.5rem;
-      color: #7f8c8d;
-      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-top: 0.5rem;
     }
 
     section {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
 
-    section h3 {
-      font-size: 1.8rem;
-      color: var(--secondary-color);
+    h3 {
+      font-size: 1.5rem;
       margin-bottom: 1rem;
-      border-left: 5px solid var(--primary-color);
+      color: var(--accent);
+      border-left: 4px solid var(--accent);
       padding-left: 1rem;
     }
 
-    ol {
-      list-style: none;
-      counter-reset: item;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
     }
 
-    ol li {
-      margin: 0.7rem 0;
-      padding-left: 2.5rem;
-      position: relative;
-      font-size: 1.1rem;
-      transition: transform 0.2s ease;
+    .card {
+      background-color: var(--card);
+      padding: 1rem;
+      border-radius: var(--radius);
+      transition: background 0.3s ease;
+      text-align: center;
     }
 
-    ol li::before {
-      counter-increment: item;
-      content: counter(item);
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: var(--primary-color);
-      color: #fff;
-      width: 1.8rem;
-      height: 1.8rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
+    .card:hover {
+      background-color: var(--hover);
     }
 
-    ol li:hover {
-      transform: translateX(5px);
-    }
-
-    a {
-      color: var(--primary-color);
+    .card a {
       text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      padding: 0.3rem 0.5rem;
-      border-radius: 4px;
+      color: var(--text);
+      font-weight: bold;
+      display: block;
     }
 
-    a:hover {
-      background-color: rgba(52, 152, 219, 0.1);
-      color: #2980b9;
+    .card a:hover {
+      color: var(--accent);
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
+    @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
-      h2 {
+
+      h3 {
         font-size: 1.2rem;
       }
     }
@@ -125,38 +102,41 @@
     <h2>MERN Stack Developer</h2>
   </header>
 
-  <section class="projects-section">
-    <h3>🌟 My Projects</h3>
-    <ol>
-      <li><a href="p1/index.html">My Portfolio</a></li>
-       <li><a href="https://react-lessons-eight.vercel.app/">My react-app</a></li>
-    </ol>
+  <section>
+    <h3>🛠 Projects</h3>
+    <div class="grid">
+      <div class="card"><a href="p1/index.html">My Portfolio</a></div>
+      <div class="card"><a href="https://react-lessons-eight.vercel.app/">React App</a></div>
+      <div class="card"><a href="https://github.com/Abdulaziz-06/mongo-query-gcet">Mongo Queries</a></div>
+      <div class="card"><a href="https://gcet-react-app-wxvk.vercel.app/">Fake Cart</a></div>
+      <div class="card"><a href="https://gcet-node-app-tan.vercel.app/">Node App</a></div>
+    </div>
   </section>
 
-  <section class="assignments-section">
-    <h3>📘 Assignments</h3>
-    <ol>
-      <li><a href="a1">Assignment 1</a></li>
-      <li><a href="a1/index1.html">Assignment 2</a></li>
-      <li><a href="a1/index2.html">Assignment 3</a></li>
-      <li><a href="a1/index3.html">Assignment 4 - Facebook</a></li>
-      <li><a href="a1/index4.html">Assignment 5</a></li>
-      <li><a href="a1/index5.html">Assignment 6</a></li>
-      <li><a href="a1/index6.html">Assignment 7</a></li>
-      <li><a href="a1/index7.html">Assignment 8</a></li>
-      <li><a href="a1/index8.html">Assignment 9</a></li>
-      <li><a href="a1/index9.html">Assignment 10</a></li>
-      <li><a href="a1/index10.html">Assignment 11</a></li>
-      <li><a href="a1/index12.html">Assignment 12</a></li>
-      <li><a href="a1/index13.html">Assignment 13</a></li>
-      <li><a href="a1/index14.html">Assignment 14</a></li>
-      <li><a href="a1/index15.html">Assignment 15</a></li>    
-     <li><a href="a1/index16.html">Assignment 16</a></li>
-      <li><a href="a1/index17.html">Assignment 17</a></li>
-      <li><a href="a1/index18.html">Assignment 18</a></li>
-      <li><a href="a1/index19.html">Assignment 19</a></li>
-      <li><a href="a1/index20.html">Assignment 20</a></li>
-    </ol>
+  <section>
+    <h3>📂 Assignments</h3>
+    <div class="grid">
+      <div class="card"><a href="a1">Assignment 1</a></div>
+      <div class="card"><a href="a1/index1.html">Assignment 2</a></div>
+      <div class="card"><a href="a1/index2.html">Assignment 3</a></div>
+      <div class="card"><a href="a1/index3.html">Assignment 4</a></div>
+      <div class="card"><a href="a1/index4.html">Assignment 5</a></div>
+      <div class="card"><a href="a1/index5.html">Assignment 6</a></div>
+      <div class="card"><a href="a1/index6.html">Assignment 7</a></div>
+      <div class="card"><a href="a1/index7.html">Assignment 8</a></div>
+      <div class="card"><a href="a1/index8.html">Assignment 9</a></div>
+      <div class="card"><a href="a1/index9.html">Assignment 10</a></div>
+      <div class="card"><a href="a1/index10.html">Assignment 11</a></div>
+      <div class="card"><a href="a1/index12.html">Assignment 12</a></div>
+      <div class="card"><a href="a1/index13.html">Assignment 13</a></div>
+      <div class="card"><a href="a1/index14.html">Assignment 14</a></div>
+      <div class="card"><a href="a1/index15.html">Assignment 15</a></div>
+      <div class="card"><a href="a1/index16.html">Assignment 16</a></div>
+      <div class="card"><a href="a1/index17.html">Assignment 17</a></div>
+      <div class="card"><a href="a1/index18.html">Assignment 18</a></div>
+      <div class="card"><a href="a1/index19.html">Assignment 19</a></div>
+      <div class="card"><a href="a1/index20.html">Assignment 20</a></div>
+    </div>
   </section>
 </body>
 </html>
