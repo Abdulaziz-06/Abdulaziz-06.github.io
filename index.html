@@ -4,15 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abdul Aziz | MERN Stack Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
   <style>
     :root {
-      --bg: #0f1117;
-      --card: #1a1c23;
-      --text: #d1d5db;
-      --accent: #7f5af0;
-      --hover: #2c2f3a;
-      --radius: 8px;
+      --primary: #0a0a0a;
+      --secondary: #1a1a1a;
+      --accent: #00ff88;
+      --accent-2: #ff006e;
+      --text: #ffffff;
+      --text-muted: #888;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --glass: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -22,121 +35,747 @@
     }
 
     body {
-      font-family: 'Fira Code', monospace;
-      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      background: var(--primary);
       color: var(--text);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.15s ease;
+    }
+
+    /* 3D Canvas Background */
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       padding: 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: var(--accent);
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      color: #aaa;
-      margin-top: 0.5rem;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    h3 {
+    .logo {
       font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-      border-left: 4px solid var(--accent);
-      padding-left: 1rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .grid {
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Main Content */
+    main {
+      padding-top: 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 20px var(--accent)); }
+      to { filter: drop-shadow(0 0 40px var(--accent-2)); }
+    }
+
+    .hero h2 {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 3rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    /* Sections */
+    .section {
+      padding: 5rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2));
+      border-radius: 2px;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
     }
 
     .card {
-      background-color: var(--card);
-      padding: 1rem;
-      border-radius: var(--radius);
-      transition: background 0.3s ease;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
       text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
     }
 
     .card:hover {
-      background-color: var(--hover);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent);
     }
 
     .card a {
-      text-decoration: none;
       color: var(--text);
-      font-weight: bold;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
       display: block;
+      transition: color 0.3s ease;
     }
 
-    .card a:hover {
+    .card:hover a {
       color: var(--accent);
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-      h3 {
-        font-size: 1.2rem;
+    /* Floating Elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      z-index: 101;
+      transition: width 0.1s ease;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
       }
+      
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    /* Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 1s ease;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 3px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Abdul Aziz</h1>
-    <h2>MERN Stack Developer</h2>
-  </header>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading">
+    <div class="loader"></div>
+  </div>
 
-  <section>
-    <h3>🛠 Projects</h3>
-    <div class="grid">
-      <div class="card"><a href="p1/index.html">My Portfolio</a></div>
-      <div class="card"><a href="https://react-lessons-eight.vercel.app/">React App</a></div>
-      <div class="card"><a href="https://github.com/Abdulaziz-06/mongo-query-gcet">Mongo Queries</a></div>
-      <div class="card"><a href="https://gcet-react-app-wxvk.vercel.app/">Fake Cart</a></div>
-      <div class="card"><a href="https://gcet-node-app-tan.vercel.app/">Node App</a></div>
-    </div>
-  </section>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
 
-  <section>
-    <h3>📂 Assignments</h3>
-    <div class="grid">
-      <div class="card"><a href="a1">Assignment 1</a></div>
-      <div class="card"><a href="a1/index1.html">Assignment 2</a></div>
-      <div class="card"><a href="a1/index2.html">Assignment 3</a></div>
-      <div class="card"><a href="a1/index3.html">Assignment 4</a></div>
-      <div class="card"><a href="a1/index4.html">Assignment 5</a></div>
-      <div class="card"><a href="a1/index5.html">Assignment 6</a></div>
-      <div class="card"><a href="a1/index6.html">Assignment 7</a></div>
-      <div class="card"><a href="a1/index7.html">Assignment 8</a></div>
-      <div class="card"><a href="a1/index8.html">Assignment 9</a></div>
-      <div class="card"><a href="a1/index9.html">Assignment 10</a></div>
-      <div class="card"><a href="a1/index10.html">Assignment 11</a></div>
-      <div class="card"><a href="a1/index12.html">Assignment 12</a></div>
-      <div class="card"><a href="a1/index13.html">Assignment 13</a></div>
-      <div class="card"><a href="a1/index14.html">Assignment 14</a></div>
-      <div class="card"><a href="a1/index15.html">Assignment 15</a></div>
-      <div class="card"><a href="a1/index16.html">Assignment 16</a></div>
-      <div class="card"><a href="a1/index17.html">Assignment 17</a></div>
-      <div class="card"><a href="a1/index18.html">Assignment 18</a></div>
-      <div class="card"><a href="a1/index19.html">Assignment 19</a></div>
-      <div class="card"><a href="a1/index20.html">Assignment 20</a></div>
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- 3D Canvas Background -->
+  <div id="canvas-container"></div>
+
+  <!-- Floating Elements -->
+  <div class="floating-elements" id="floatingElements"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Abdul Aziz</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#assignments">Assignments</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-  </section>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Abdul Aziz</h1>
+        <h2>MERN Stack Developer</h2>
+        <p class="hero-subtitle">Crafting digital experiences with cutting-edge technology</p>
+        <a href="#projects" class="cta-button">Explore My Work</a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <h2 class="section-title">🛠 Projects</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">💼</div>
+          <a href="p1/index.html">My Portfolio</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚛️</div>
+          <a href="https://react-lessons-eight.vercel.app/">React App</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">🍃</div>
+          <a href="https://github.com/Abdulaziz-06/mongo-query-gcet">Mongo Queries</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛒</div>
+          <a href="https://gcet-react-app-wxvk.vercel.app/">Fake Cart</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <a href="https://gcet-node-app-tan.vercel.app/">Node App</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assignments Section -->
+    <section class="section" id="assignments">
+      <h2 class="section-title">📂 Assignments</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1">Assignment 1</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index1.html">Assignment 2</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index2.html">Assignment 3</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index3.html">Assignment 4</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index4.html">Assignment 5</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index5.html">Assignment 6</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index6.html">Assignment 7</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index7.html">Assignment 8</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index8.html">Assignment 9</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index9.html">Assignment 10</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index10.html">Assignment 11</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index11.html">Assignment 12</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index12.html">Assignment 13</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index13.html">Assignment 14</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index14.html">Assignment 15</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index15.html">Assignment 16</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index16.html">Assignment 17</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index17.html">Assignment 18</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index18.html">Assignment 19</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index19.html">Assignment 20</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <a href="a1/index20.html">Assignment 21</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Loading Screen
+    window.addEventListener('load', () => {
+      gsap.to('#loading', {
+        opacity: 0,
+        duration: 1,
+        onComplete: () => {
+          document.getElementById('loading').style.display = 'none';
+          initAnimations();
+        }
+      });
+    });
+
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+
+    document.addEventListener('mousemove', (e) => {
+      gsap.to(cursor, { x: e.clientX - 10, y: e.clientY - 10, duration: 0.1 });
+      gsap.to(cursorFollower, { x: e.clientX - 4, y: e.clientY - 4, duration: 0.15 });
+    });
+
+    // Scroll Progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      document.getElementById('scrollProgress').style.width = (scrollPercent * 100) + '%';
+    });
+
+    // 3D Background
+    function init3DBackground() {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000, 0);
+      document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+      // Create particles
+      const geometry = new THREE.BufferGeometry();
+      const vertices = [];
+      const colors = [];
+
+      for (let i = 0; i < 5000; i++) {
+        vertices.push(
+          (Math.random() - 0.5) * 2000,
+          (Math.random() - 0.5) * 2000,
+          (Math.random() - 0.5) * 2000
+        );
+        
+        colors.push(
+          Math.random(),
+          Math.random() * 0.5 + 0.5,
+          1
+        );
+      }
+
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+      geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+      const material = new THREE.PointsMaterial({ 
+        size: 2, 
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      camera.position.z = 1000;
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        particles.rotation.x += 0.001;
+        particles.rotation.y += 0.002;
+        
+        // Mouse interaction
+        const mouse = { x: 0, y: 0 };
+        document.addEventListener('mousemove', (event) => {
+          mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+          mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+          
+          particles.rotation.x = mouse.y * 0.1;
+          particles.rotation.y = mouse.x * 0.1;
+        });
+        
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Handle resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    // Floating Elements
+    function createFloatingElements() {
+      const container = document.getElementById('floatingElements');
+      for (let i = 0; i < 50; i++) {
+        const element = document.createElement('div');
+        element.className = 'floating-element';
+        element.style.left = Math.random() * 100 + '%';
+        element.style.top = Math.random() * 100 + '%';
+        element.style.animationDelay = Math.random() * 6 + 's';
+        element.style.animationDuration = (Math.random() * 4 + 4) + 's';
+        container.appendChild(element);
+      }
+    }
+
+    // Initialize Animations
+    function initAnimations() {
+      // Hero animations
+      gsap.from('.hero h1', { y: 100, opacity: 0, duration: 1, delay: 0.5 });
+      gsap.from('.hero h2', { y: 50, opacity: 0, duration: 1, delay: 0.7 });
+      gsap.from('.hero-subtitle', { y: 30, opacity: 0, duration: 1, delay: 0.9 });
+      gsap.from('.cta-button', { y: 30, opacity: 0, duration: 1, delay: 1.1 });
+
+      // Cards animation on scroll
+      gsap.utils.toArray('.card').forEach((card, index) => {
+        gsap.from(card, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          delay: index * 0.1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
+
+      // Section titles animation
+      gsap.utils.toArray('.section-title').forEach((title) => {
+        gsap.from(title, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: title,
+            start: 'top 80%'
+          }
+        });
+      });
+
+      // Parallax effect for hero
+      gsap.to('.hero-content', {
+        y: -100,
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          gsap.to(window, { scrollTo: target, duration: 1, ease: "power2.inOut" });
+        }
+      });
+    });
+
+    // Initialize everything
+    init3DBackground();
+    createFloatingElements();
+
+    // Card hover effects
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        gsap.to(card, { scale: 1.05, duration: 0.3 });
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, { scale: 1, duration: 0.3 });
+      });
+    });
+
+    // Add magnetic effect to buttons
+    document.querySelectorAll('.cta-button, .card').forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        gsap.to(el, { x: x * 0.1, y: y * 0.1, duration: 0.3 });
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, { x: 0, y: 0, duration: 0.3 });
+      });
+    });
+  </script>
 </body>
 </html>
